@@ -5,10 +5,12 @@ services:
     restart: unless-stopped
     ports:
       - "1883:1883"
+      - "8883:8883"
     volumes:
       - ./volumes/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./volumes/mosquitto/data:/mosquitto/data
       - ./volumes/mosquitto/log:/mosquitto/log
+      - /etc/letsencrypt:/etc/letsencrypt:ro 
 
   mysql:
     image: mysql:8.0
