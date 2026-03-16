@@ -1,0 +1,73 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto
+    container_name: core-mqtt
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./volumes/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./volumes/mosquitto/data:/mosquitto/data
+      - ./volumes/mosquitto/log:/mosquitto/log
+
+  mysql:
+    image: mysql:8.0
+    container_name: core-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: iot_db
+      TZ: Asia/Ho_Chi_Minh
+    volumes:
+      - ./volumes/mysql_data:/var/lib/mysql
+
+  mqtt-consumer:
+    build: ./mqtt-consumer
+    container_name: ai-mqtt-consumer
+    restart: unless-stopped
+    environment:               
+      TZ: Asia/Ho_Chi_Minh
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - mqtt
+      - mysql
+
+  ml-service:
+    build: ./ml-service
+    container_name: ai-ml-service
+    restart: unless-stopped
+    depends_on:
+      - mysql
+
+  nodered:
+    image: nodered/node-red
+    container_name: edge-nodered
+    restart: unless-stopped
+    environment:               
+      TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "127.0.0.1:1880:1880"
+    volumes:
+      - ./volumes/nodered:/data
+
+  nginx:
+    image: nginx:latest
+    container_name: edge-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd:ro
+    depends_on:
+      - nodered
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: edge-tunnel
+    restart: unless-stopped
+    command: tunnel run
+    env_file:
+      - .env
+    depends_on:
+      - nginx
