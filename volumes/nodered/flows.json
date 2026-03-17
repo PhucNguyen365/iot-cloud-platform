@@ -705,15 +705,15 @@
         "type": "mqtt in",
         "z": "cbd90930c9da13e1",
         "name": "",
-        "topic": "phucops/sensor/+",
+        "topic": "sensor/+",
         "qos": "2",
         "datatype": "json",
-        "broker": "e104a6a9233bdc44",
+        "broker": "6b2d09deabe1563a",
         "nl": false,
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 330,
+        "x": 300,
         "y": 320,
         "wires": [
             [
