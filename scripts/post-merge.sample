@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "=================================================="
+echo " Git Hook: Phát hiện cập nhật mới từ GitHub!"
+echo " Đang tự động chạy script áp lại quyền sở hữu..."
+echo "=================================================="
+
+# Lấy đường dẫn tuyệt đối của thư mục gốc dự án
+REPO_ROOT=$(git rev-parse --show-toplevel)
+
+# Chạy script init_server.sh với quyền sudo
+# (Chủ tịch nhớ cấu hình visudo NOPASSWD như anh em mình bàn nhé)
+sudo "$REPO_ROOT/scripts/init_server.sh"
+
+# Tùy chọn: Restart các service nếu cần cập nhật cấu hình ngay
+# docker compose restart nodered nginx
