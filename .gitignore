@@ -11,6 +11,7 @@ volumes/nodered/.config.*
 volumes/nodered/.sessions.json
 volumes/nodered/*backup*
 volumes/nodered/*cred.json
+volumes/nodered/settings.js
 volumes/mysql_data/
 
 __pycache__/

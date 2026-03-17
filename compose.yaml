@@ -4,7 +4,6 @@ services:
     container_name: core-mqtt
     restart: unless-stopped
     ports:
-      - "1883:1883"
       - "8883:8883"
     volumes:
       - ./volumes/mosquitto/config/${MQTT_CONFIG_FILE:-mosquitto.conf}:/mosquitto/config/mosquitto.conf
