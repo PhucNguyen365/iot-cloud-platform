@@ -54,6 +54,21 @@ def on_connect(client, userdata, flags, rc):
 # Callback: Kích hoạt khi có luồng Message mới đẩy vào Topic
 def on_message(client, userdata, msg):
     try:
+        # --- THÊM ĐOẠN NÀY ĐỂ FIX LỖI LOST CONNECTION ---
+        global db, cursor
+        try:
+            db.ping(reconnect=True, attempts=3, delay=1)
+        except:
+            # Nếu ping thất bại hoàn toàn, cố gắng tạo lại connection mới
+            db = mysql.connector.connect(
+                host="mysql",       
+                user="root",
+                password=os.environ.get("MYSQL_ROOT_PASSWORD"),
+                database="iot_db"
+            )
+            cursor = db.cursor()
+        # ------------------------------------------------
+
         # Giải mã chuỗi JSON từ Payload của thiết bị
         payload = json.loads(msg.payload.decode("utf-8"))
         
