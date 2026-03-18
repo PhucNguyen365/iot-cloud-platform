@@ -7,6 +7,7 @@ services:
       - "8883:8883"
     volumes:
       - ./volumes/mosquitto/config/${MQTT_CONFIG_FILE:-mosquitto.conf}:/mosquitto/config/mosquitto.conf
+      - ./volumes/mosquitto/config/password_file:/mosquitto/config/password_file
       - ./volumes/mosquitto/data:/mosquitto/data
       - ./volumes/mosquitto/log:/mosquitto/log
       - /etc/letsencrypt:/etc/letsencrypt:ro 

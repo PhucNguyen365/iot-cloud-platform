@@ -4,6 +4,7 @@ Thumbs.db
 
 volumes/mosquitto/data/
 volumes/mosquitto/log/
+volumes/mosquitto/config/password_file
 
 volumes/nodered/node_modules/
 volumes/nodered/.npm/
