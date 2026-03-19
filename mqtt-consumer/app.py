@@ -91,6 +91,9 @@ def on_message(client, userdata, msg):
 
 # Khởi tạo MQTT Client và mapping các hàm Callback
 client = mqtt.Client()
+
+client.username_pw_set("deadline-du-thu", "135531")
+
 client.on_connect = on_connect
 client.on_message = on_message
 
