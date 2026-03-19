@@ -38,6 +38,9 @@ services:
     build: ./ml-service
     container_name: ai-ml-service
     restart: unless-stopped
+    environment:               
+      TZ: Asia/Ho_Chi_Minh
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     depends_on:
       - mysql
 

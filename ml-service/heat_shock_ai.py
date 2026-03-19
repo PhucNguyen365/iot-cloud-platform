@@ -19,7 +19,7 @@ while db is None:
         )
         print("Successfully connected to MySQL!")
     except Exception as e:
-        print(f"MySQL not ready yet, retrying in 5s...")
+        print(f"MySQL connection failed: {e}. Retrying in 5s...")
         time.sleep(5)
 
 # Hàm tính toán chỉ số nhiệt (Heat Index) theo công thức chuẩn của NOAA
@@ -40,8 +40,8 @@ try:
         df = df.dropna(subset=["device_id"])
         
         # Phân tách dữ liệu theo luồng cảm biến trong nhà và ngoài trời
-        room = df[df["device_id"] == "esp32_room1"].reset_index(drop=True)
-        outdoor = df[df["device_id"] == "esp32_room2"].reset_index(drop=True)
+        room = df[df["device_id"] == "ESP32_PhongKhachin"].reset_index(drop=True)
+        outdoor = df[df["device_id"] == "ESP32_PhongKhachout"].reset_index(drop=True)
         
         # Cân bằng độ dài 2 tập dữ liệu để ghép DataFrame
         min_len = min(len(room), len(outdoor))
@@ -99,8 +99,8 @@ if os.path.exists("heat_model.pkl"):
             
             # Lọc ra thông số mới nhất của từng khu vực
             for device, temp, hum in rows:
-                if device == "esp32_room1" and indoor is None: indoor, indoor_h = temp, hum
-                if device == "esp32_room2" and outdoor is None: outdoor, outdoor_h = temp, hum
+                if device == "ESP32_PhongKhachin" and indoor is None: indoor, indoor_h = temp, hum
+                if device == "ESP32_PhongKhachout" and outdoor is None: outdoor, outdoor_h = temp, hum
 
             # Tiến hành dự đoán nếu thu thập đủ dữ liệu từ 2 trạm
             if indoor is not None and outdoor is not None:
