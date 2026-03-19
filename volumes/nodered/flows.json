@@ -532,8 +532,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 940,
-        "y": 220,
+        "x": 1160,
+        "y": 200,
         "wires": [
             []
         ]
@@ -586,8 +586,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 930,
-        "y": 280,
+        "x": 1150,
+        "y": 260,
         "wires": [
             []
         ]
@@ -640,7 +640,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 940,
+        "x": 1160,
         "y": 340,
         "wires": [
             []
@@ -694,7 +694,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 930,
+        "x": 1150,
         "y": 400,
         "wires": [
             []
@@ -737,14 +737,114 @@
         "y": 320,
         "wires": [
             [
-                "06cf106a37b77984"
+                "0db254074b77b5ac"
             ],
+            [
+                "172d1d898ea56de4"
+            ],
+            [
+                "b36db3bfa6058a18"
+            ],
+            [
+                "53caa944dccd766c"
+            ]
+        ]
+    },
+    {
+        "id": "0db254074b77b5ac",
+        "type": "trigger",
+        "z": "cbd90930c9da13e1",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "num",
+        "duration": "15",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 950,
+        "y": 200,
+        "wires": [
+            [
+                "06cf106a37b77984"
+            ]
+        ]
+    },
+    {
+        "id": "172d1d898ea56de4",
+        "type": "trigger",
+        "z": "cbd90930c9da13e1",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "num",
+        "duration": "15",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 950,
+        "y": 260,
+        "wires": [
             [
                 "0651fc403c308a99"
-            ],
+            ]
+        ]
+    },
+    {
+        "id": "b36db3bfa6058a18",
+        "type": "trigger",
+        "z": "cbd90930c9da13e1",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "num",
+        "duration": "15",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 950,
+        "y": 340,
+        "wires": [
             [
                 "37e05972b5614e35"
-            ],
+            ]
+        ]
+    },
+    {
+        "id": "53caa944dccd766c",
+        "type": "trigger",
+        "z": "cbd90930c9da13e1",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "num",
+        "duration": "15",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 950,
+        "y": 400,
+        "wires": [
             [
                 "a81c10fb9f90f7d5"
             ]
