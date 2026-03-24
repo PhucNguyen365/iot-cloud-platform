@@ -184,7 +184,7 @@
         "id": "32cc0252b838a0fa",
         "type": "MySQLdatabase",
         "name": "mysql",
-        "host": "127.0.0.1",
+        "host": "mysql",
         "port": "3306",
         "db": "iot_db",
         "tz": "+07:00",
@@ -668,7 +668,7 @@
         "type": "function",
         "z": "6fce02be3b0436a0",
         "name": "function 2",
-        "func": "// Lấy trung bình mỗi giờ của CẢ 2 trạm trong 7 ngày qua\nmsg.topic = `\n    SELECT \n        device_id,\n        UNIX_TIMESTAMP(DATE_FORMAT(created_at, '%Y-%m-%d %H:00:00')) * 1000 AS timestamp, \n        ROUND(AVG(temperature), 1) as temp, \n        ROUND(AVG(humidity), 1) as hum \n    FROM sensor_data \n    WHERE device_id IN ('ESP32_PhongKhachin', 'ESP32_PhongKhachout')\n      AND created_at >= NOW() - INTERVAL 7 DAY \n    GROUP BY device_id, DATE_FORMAT(created_at, '%Y-%m-%d %H:00:00') \n    ORDER BY timestamp ASC;\n`;\nreturn msg;",
+        "func": "msg.topic = `\n    SELECT \n        device_id,\n        UNIX_TIMESTAMP(DATE_FORMAT(created_at, '%Y-%m-%d %H:00:00')) * 1000 AS timestamp, \n        ROUND(AVG(temperature), 1) as temp, \n        ROUND(AVG(humidity), 1) as hum \n    FROM sensor_data \n    WHERE device_id IN ('ESP32_PhongKhachin', 'ESP32_PhongKhachout')\n      AND created_at >= NOW() - INTERVAL 7 DAY \n    GROUP BY device_id, timestamp \n    ORDER BY timestamp ASC;\n`;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -943,7 +943,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
+        "x": 780,
         "y": 340,
         "wires": [
             [
