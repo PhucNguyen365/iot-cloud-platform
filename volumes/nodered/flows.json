@@ -8,6 +8,14 @@
         "env": []
     },
     {
+        "id": "6fce02be3b0436a0",
+        "type": "tab",
+        "label": "history",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "240b11703038dcb8",
         "type": "ui-base",
         "name": "My Dashboard",
@@ -77,7 +85,7 @@
                 "cols": "12"
             }
         ],
-        "order": 1,
+        "order": 2,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -173,316 +181,78 @@
         "sessionExpiry": ""
     },
     {
-        "id": "17b1157cea662778",
-        "type": "debug",
-        "z": "cbd90930c9da13e1",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 120,
-        "y": 60,
-        "wires": []
+        "id": "32cc0252b838a0fa",
+        "type": "MySQLdatabase",
+        "name": "mysql",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "iot_db",
+        "tz": "+07:00",
+        "charset": "UTF8"
     },
     {
-        "id": "f4f3d4300d8e3b17",
-        "type": "debug",
-        "z": "cbd90930c9da13e1",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 120,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "bee7a949bb910ea0",
-        "type": "ui-chart",
-        "z": "cbd90930c9da13e1",
-        "group": "113cebdcb5219459",
-        "name": "",
-        "label": "Độ ẩm",
-        "order": 4,
-        "chartType": "line",
-        "category": "topic",
-        "categoryType": "msg",
-        "xAxisLabel": "",
-        "xAxisProperty": "",
-        "xAxisPropertyType": "timestamp",
-        "xAxisType": "time",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "",
-        "xmax": "",
-        "yAxisLabel": "",
-        "yAxisProperty": "payload",
-        "yAxisPropertyType": "msg",
-        "ymin": "",
-        "ymax": "",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": false,
-        "pointShape": "circle",
-        "pointRadius": 4,
-        "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "",
-        "colors": [
-            "#0095ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
+        "id": "0a1eb5ca8cb92598",
+        "type": "ui-page",
+        "name": "Lịch Sử",
+        "ui": "240b11703038dcb8",
+        "path": "/page2",
+        "icon": "",
+        "layout": "grid",
+        "theme": "06e92153a3f4061f",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
         ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": 6,
-        "height": 8,
+        "order": 1,
         "className": "",
-        "interpolation": "linear",
-        "x": 370,
-        "y": 520,
-        "wires": [
-            []
-        ]
+        "visible": "true",
+        "disabled": "false"
     },
     {
-        "id": "fd8c759da051443a",
-        "type": "ui-chart",
-        "z": "cbd90930c9da13e1",
-        "group": "113cebdcb5219459",
-        "name": "",
-        "label": "Nhiệt độ",
-        "order": 3,
-        "chartType": "line",
-        "category": "topic",
-        "categoryType": "msg",
-        "xAxisLabel": "",
-        "xAxisProperty": "",
-        "xAxisPropertyType": "timestamp",
-        "xAxisType": "time",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "",
-        "xmax": "",
-        "yAxisLabel": "",
-        "yAxisProperty": "payload",
-        "yAxisPropertyType": "msg",
-        "ymin": "",
-        "ymax": "",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": false,
-        "pointShape": "circle",
-        "pointRadius": 4,
-        "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "",
-        "colors": [
-            "#0095ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
+        "id": "1b30c49a2cfc71d6",
+        "type": "ui-group",
+        "name": "Trong Nhà",
+        "page": "0a1eb5ca8cb92598",
         "width": 6,
-        "height": 8,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
         "className": "",
-        "interpolation": "linear",
-        "x": 240,
-        "y": 660,
-        "wires": [
-            []
-        ]
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
     },
     {
-        "id": "97495fbd647554ed",
-        "type": "debug",
-        "z": "cbd90930c9da13e1",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 900,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "e16d999d69e37ce0",
-        "type": "ui-chart",
-        "z": "cbd90930c9da13e1",
-        "group": "d4bd59a96017c36a",
-        "name": "",
-        "label": "Nhiệt độ ",
-        "order": 3,
-        "chartType": "line",
-        "category": "topic",
-        "categoryType": "msg",
-        "xAxisLabel": "",
-        "xAxisProperty": "",
-        "xAxisPropertyType": "timestamp",
-        "xAxisType": "time",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "",
-        "xmax": "",
-        "yAxisLabel": "",
-        "yAxisProperty": "payload",
-        "yAxisPropertyType": "msg",
-        "ymin": "",
-        "ymax": "",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": false,
-        "pointShape": "circle",
-        "pointRadius": 4,
-        "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "",
-        "colors": [
-            "#0095ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
+        "id": "f4eb8aca16f0bfd1",
+        "type": "ui-group",
+        "name": "Ngoài Trời",
+        "page": "0a1eb5ca8cb92598",
         "width": 6,
-        "height": 8,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
         "className": "",
-        "interpolation": "linear",
-        "x": 400,
-        "y": 80,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "3a9997b0d94c3dbd",
-        "type": "debug",
-        "z": "cbd90930c9da13e1",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 580,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "39fd2a8b256dfc0f",
-        "type": "ui-chart",
-        "z": "cbd90930c9da13e1",
-        "group": "d4bd59a96017c36a",
-        "name": "",
-        "label": "Độ ẩm",
-        "order": 4,
-        "chartType": "line",
-        "category": "topic",
-        "categoryType": "msg",
-        "xAxisLabel": "",
-        "xAxisProperty": "",
-        "xAxisPropertyType": "timestamp",
-        "xAxisType": "time",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "",
-        "xmax": "",
-        "yAxisLabel": "",
-        "yAxisProperty": "payload",
-        "yAxisPropertyType": "msg",
-        "ymin": "",
-        "ymax": "",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": false,
-        "pointShape": "circle",
-        "pointRadius": 4,
-        "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "",
-        "colors": [
-            "#0095ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": 6,
-        "height": 8,
-        "className": "",
-        "interpolation": "linear",
-        "x": 530,
-        "y": 680,
-        "wires": [
-            []
-        ]
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
     },
     {
         "id": "06cf106a37b77984",
@@ -847,6 +617,346 @@
         "wires": [
             [
                 "a81c10fb9f90f7d5"
+            ]
+        ]
+    },
+    {
+        "id": "dde4dee6280ca8a0",
+        "type": "mysql",
+        "z": "6fce02be3b0436a0",
+        "mydb": "32cc0252b838a0fa",
+        "name": "",
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "8f5d2d51e73d70a8"
+            ]
+        ]
+    },
+    {
+        "id": "1089e18815a4b0e2",
+        "type": "inject",
+        "z": "6fce02be3b0436a0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 340,
+        "wires": [
+            [
+                "67f46d91dd8f59ba"
+            ]
+        ]
+    },
+    {
+        "id": "67f46d91dd8f59ba",
+        "type": "function",
+        "z": "6fce02be3b0436a0",
+        "name": "function 2",
+        "func": "// Lấy trung bình mỗi giờ của CẢ 2 trạm trong 7 ngày qua\nmsg.topic = `\n    SELECT \n        device_id,\n        UNIX_TIMESTAMP(DATE_FORMAT(created_at, '%Y-%m-%d %H:00:00')) * 1000 AS timestamp, \n        ROUND(AVG(temperature), 1) as temp, \n        ROUND(AVG(humidity), 1) as hum \n    FROM sensor_data \n    WHERE device_id IN ('ESP32_PhongKhachin', 'ESP32_PhongKhachout')\n      AND created_at >= NOW() - INTERVAL 7 DAY \n    GROUP BY device_id, DATE_FORMAT(created_at, '%Y-%m-%d %H:00:00') \n    ORDER BY timestamp ASC;\n`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 340,
+        "wires": [
+            [
+                "dde4dee6280ca8a0"
+            ]
+        ]
+    },
+    {
+        "id": "1b1ef9ea403dc752",
+        "type": "ui-chart",
+        "z": "6fce02be3b0436a0",
+        "group": "f4eb8aca16f0bfd1",
+        "name": "chart_02",
+        "label": "Độ Ẩm",
+        "order": 2,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 940,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3fa9c0bac6afc9a2",
+        "type": "ui-chart",
+        "z": "6fce02be3b0436a0",
+        "group": "1b30c49a2cfc71d6",
+        "name": "chart_03",
+        "label": "Nhiệt Độ",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 940,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "77b0de4a47f1aa3c",
+        "type": "ui-chart",
+        "z": "6fce02be3b0436a0",
+        "group": "f4eb8aca16f0bfd1",
+        "name": "chart_01",
+        "label": "Nhiệt Độ",
+        "order": 1,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 940,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f378e00e9cc9d5b",
+        "type": "ui-chart",
+        "z": "6fce02be3b0436a0",
+        "group": "1b30c49a2cfc71d6",
+        "name": "chart_04",
+        "label": "Độ Ẩm",
+        "order": 2,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 940,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f5d2d51e73d70a8",
+        "type": "function",
+        "z": "6fce02be3b0436a0",
+        "name": "function 3",
+        "func": "let tempIn = [], humIn = [];\nlet tempOut = [], humOut = [];\n\nmsg.payload.forEach(row => {\n    if (row.device_id === 'ESP32_PhongKhachin') {\n        tempIn.push({ x: row.timestamp, y: row.temp });\n        humIn.push({ x: row.timestamp, y: row.hum });\n    } else if (row.device_id === 'ESP32_PhongKhachout') {\n        tempOut.push({ x: row.timestamp, y: row.temp });\n        humOut.push({ x: row.timestamp, y: row.hum });\n    }\n});\n\nlet msgTempIn = { payload: [{ series: [\"Nhiệt độ Trong nhà\"], data: [tempIn] }] };\nlet msgHumIn = { payload: [{ series: [\"Độ ẩm Trong nhà\"], data: [humIn] }] };\nlet msgTempOut = { payload: [{ series: [\"Nhiệt độ Ngoài trời\"], data: [tempOut] }] };\nlet msgHumOut = { payload: [{ series: [\"Độ ẩm Ngoài trời\"], data: [humOut] }] };\n\nreturn [msgTempIn, msgHumIn, msgTempOut, msgHumOut];",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 340,
+        "wires": [
+            [
+                "77b0de4a47f1aa3c"
+            ],
+            [
+                "1b1ef9ea403dc752"
+            ],
+            [
+                "3fa9c0bac6afc9a2"
+            ],
+            [
+                "8f378e00e9cc9d5b"
             ]
         ]
     }
