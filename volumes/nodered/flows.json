@@ -493,8 +493,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 300,
-        "y": 320,
+        "x": 400,
+        "y": 300,
         "wires": [
             [
                 "042cae2839d91a7a"
@@ -513,20 +513,20 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 320,
+        "x": 720,
+        "y": 300,
         "wires": [
             [
-                "0db254074b77b5ac"
+                "06cf106a37b77984"
             ],
             [
-                "172d1d898ea56de4"
+                "0651fc403c308a99"
             ],
             [
-                "b36db3bfa6058a18"
+                "37e05972b5614e35"
             ],
             [
-                "53caa944dccd766c"
+                "a81c10fb9f90f7d5"
             ]
         ]
     },
@@ -537,7 +537,7 @@
         "name": "",
         "op1": "",
         "op2": "0",
-        "op1type": "pay",
+        "op1type": "nul",
         "op2type": "num",
         "duration": "15",
         "extend": true,
@@ -548,7 +548,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 950,
-        "y": 200,
+        "y": 80,
         "wires": [
             [
                 "06cf106a37b77984"
@@ -562,7 +562,7 @@
         "name": "",
         "op1": "",
         "op2": "0",
-        "op1type": "pay",
+        "op1type": "nul",
         "op2type": "num",
         "duration": "15",
         "extend": true,
@@ -573,7 +573,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 950,
-        "y": 260,
+        "y": 140,
         "wires": [
             [
                 "0651fc403c308a99"
@@ -587,7 +587,7 @@
         "name": "",
         "op1": "",
         "op2": "0",
-        "op1type": "pay",
+        "op1type": "nul",
         "op2type": "num",
         "duration": "15",
         "extend": true,
@@ -598,7 +598,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 950,
-        "y": 340,
+        "y": 520,
         "wires": [
             [
                 "37e05972b5614e35"
@@ -612,7 +612,7 @@
         "name": "",
         "op1": "",
         "op2": "0",
-        "op1type": "pay",
+        "op1type": "nul",
         "op2type": "num",
         "duration": "15",
         "extend": true,
@@ -623,7 +623,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 950,
-        "y": 400,
+        "y": 580,
         "wires": [
             [
                 "a81c10fb9f90f7d5"
