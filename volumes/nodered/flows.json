@@ -506,7 +506,7 @@
         "type": "function",
         "z": "cbd90930c9da13e1",
         "name": "function 1",
-        "func": "// Đọc tên thẻ căn cước của cảm biến (ESP32_PhongKhachIn hoặc ESP32_PhongKhachOut)\nvar id = msg.payload.device_id;\n\n// Tách riêng Nhiệt độ và Độ ẩm ra đóng gói lại\nvar tempMsg = { payload: msg.payload.temperature };\nvar humMsg = { payload: msg.payload.humidity };\n\n// TRẠM KIỂM SOÁT\nif (id === \"ESP32_PhongKhachin\") {\n    // Nếu là cảm biến TRONG NHÀ -> Bơm vào 2 ống số 1 và số 2\n    return [tempMsg, humMsg, null, null];\n}\nelse if (id === \"ESP32_PhongKhachout\") {\n    // Nếu là cảm biến NGOÀI TRỜI -> Bơm vào 2 ống số 3 và số 4\n    return [null, null, tempMsg, humMsg];\n}\n\n// Nếu tên không khớp thì vứt bỏ (không bơm đi đâu cả)\nreturn [null, null, null, null];",
+        "func": "var id = msg.payload.device_id;\nvar tempMsg = { payload: msg.payload.temperature };\nvar humMsg = { payload: msg.payload.humidity };\n\nif (id === \"ESP32_PhongKhachin\") {\n    return [tempMsg, humMsg, null, null];\n} else if (id === \"ESP32_PhongKhachout\") {\n    return [null, null, tempMsg, humMsg];\n}\nreturn [null, null, null, null];",
         "outputs": 4,
         "timeout": 0,
         "noerr": 0,
