@@ -181,16 +181,6 @@
         "sessionExpiry": ""
     },
     {
-        "id": "32cc0252b838a0fa",
-        "type": "MySQLdatabase",
-        "name": "mysql",
-        "host": "mysql",
-        "port": "3306",
-        "db": "iot_db",
-        "tz": "+07:00",
-        "charset": "UTF8"
-    },
-    {
         "id": "0a1eb5ca8cb92598",
         "type": "ui-page",
         "name": "Lịch Sử",
@@ -253,6 +243,26 @@
         "visible": "true",
         "disabled": "false",
         "groupType": "default"
+    },
+    {
+        "id": "32cc0252b838a0fa",
+        "type": "MySQLdatabase",
+        "name": "mysql",
+        "host": "mysql",
+        "port": "3306",
+        "db": "iot_db",
+        "tz": "+07:00",
+        "charset": "UTF8"
+    },
+    {
+        "id": "731a391c894b18cb",
+        "type": "MySQLdatabase",
+        "name": "mysql",
+        "host": "mysql",
+        "port": "3306",
+        "db": "iot_db",
+        "tz": "+07:00",
+        "charset": "UTF8"
     },
     {
         "id": "06cf106a37b77984",
@@ -621,20 +631,6 @@
         ]
     },
     {
-        "id": "dde4dee6280ca8a0",
-        "type": "mysql",
-        "z": "6fce02be3b0436a0",
-        "mydb": "32cc0252b838a0fa",
-        "name": "",
-        "x": 470,
-        "y": 340,
-        "wires": [
-            [
-                "8f5d2d51e73d70a8"
-            ]
-        ]
-    },
-    {
         "id": "1089e18815a4b0e2",
         "type": "inject",
         "z": "6fce02be3b0436a0",
@@ -936,7 +932,7 @@
         "type": "function",
         "z": "6fce02be3b0436a0",
         "name": "function 3",
-        "func": "let tempIn = [], humIn = [];\nlet tempOut = [], humOut = [];\n\nmsg.payload.forEach(row => {\n    if (row.device_id === 'ESP32_PhongKhachin') {\n        tempIn.push({ x: row.timestamp, y: row.temp });\n        humIn.push({ x: row.timestamp, y: row.hum });\n    } else if (row.device_id === 'ESP32_PhongKhachout') {\n        tempOut.push({ x: row.timestamp, y: row.temp });\n        humOut.push({ x: row.timestamp, y: row.hum });\n    }\n});\n\nlet msgTempIn = { payload: [{ series: [\"Nhiệt độ Trong nhà\"], data: [tempIn] }] };\nlet msgHumIn = { payload: [{ series: [\"Độ ẩm Trong nhà\"], data: [humIn] }] };\nlet msgTempOut = { payload: [{ series: [\"Nhiệt độ Ngoài trời\"], data: [tempOut] }] };\nlet msgHumOut = { payload: [{ series: [\"Độ ẩm Ngoài trời\"], data: [humOut] }] };\n\nreturn [msgTempIn, msgHumIn, msgTempOut, msgHumOut];",
+        "func": "let tempIn = [], humIn = [];\nlet tempOut = [], humOut = [];\n\nmsg.payload.forEach(row => {\n    // Phải ép kiểu về Number, không là Chart nó đình công không chịu vẽ!\n    let t = Number(row.timestamp);\n    let temp = Number(row.temp);\n    let hum = Number(row.hum);\n\n    if (row.device_id === 'ESP32_PhongKhachin') {\n        tempIn.push({ x: t, y: temp });\n        humIn.push({ x: t, y: hum });\n    } else if (row.device_id === 'ESP32_PhongKhachout') {\n        tempOut.push({ x: t, y: temp });\n        humOut.push({ x: t, y: hum });\n    }\n});\n\nlet msgTempIn = { payload: [{ series: [\"Nhiệt độ Trong nhà\"], data: [tempIn] }] };\nlet msgHumIn = { payload: [{ series: [\"Độ ẩm Trong nhà\"], data: [humIn] }] };\nlet msgTempOut = { payload: [{ series: [\"Nhiệt độ Ngoài trời\"], data: [tempOut] }] };\nlet msgHumOut = { payload: [{ series: [\"Độ ẩm Ngoài trời\"], data: [humOut] }] };\n\nreturn [msgTempIn, msgHumIn, msgTempOut, msgHumOut];",
         "outputs": 4,
         "timeout": 0,
         "noerr": 0,
@@ -957,6 +953,20 @@
             ],
             [
                 "8f378e00e9cc9d5b"
+            ]
+        ]
+    },
+    {
+        "id": "dde4dee6280ca8a0",
+        "type": "mysql",
+        "z": "6fce02be3b0436a0",
+        "mydb": "731a391c894b18cb",
+        "name": "",
+        "x": 470,
+        "y": 340,
+        "wires": [
+            [
+                "8f5d2d51e73d70a8"
             ]
         ]
     }
