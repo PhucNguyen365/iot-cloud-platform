@@ -3,11 +3,30 @@ import pandas as pd
 import joblib
 import time
 import os
+import requests # THÊM THƯ VIỆN GỌI API TELEGRAM
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 
+# ==========================================
+# CẤU HÌNH TELEGRAM BOT
+# ==========================================
+TELEGRAM_TOKEN = "8623568797:AAEIerQ-p_84Of1_L_8A8_6ydXWNA4-11JA"
+TELEGRAM_CHAT_ID = "7049984207"
+
+def send_telegram_alert(message):
+    # Nếu chưa điền Token thì bỏ qua không gửi để tránh báo lỗi
+    if "ĐIỀN_" in TELEGRAM_TOKEN:
+        return 
+    
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+    payload = {"chat_id": TELEGRAM_CHAT_ID, "text": message}
+    try:
+        requests.post(url, json=payload, timeout=5)
+    except Exception as e:
+        print(f"Lỗi gửi Telegram: {e}", flush=True)
+
 # Khởi tạo kết nối DB, có cơ chế retry chờ container mysql khởi động xong
-print("Waiting for MySQL to start...")
+print("Waiting for MySQL to start...", flush=True)
 time.sleep(15)
 
 db = None
@@ -17,9 +36,9 @@ while db is None:
         db = mysql.connector.connect(
             host="mysql", user="root", password=os.environ.get("MYSQL_ROOT_PASSWORD"), database="iot_db"
         )
-        print("Successfully connected to MySQL!")
+        print("Successfully connected to MySQL!", flush=True)
     except Exception as e:
-        print(f"MySQL connection failed: {e}. Retrying in 5s...")
+        print(f"MySQL connection failed: {e}. Retrying in 5s...", flush=True)
         time.sleep(5)
 
 # Hàm tính toán chỉ số nhiệt (Heat Index) theo công thức chuẩn của NOAA
@@ -61,37 +80,42 @@ try:
         data["label"] = data.apply(lambda x: 1 if x["delta_temp"] > 10 or x["heat_index"] > 40 else 0, axis=1)
         
         # Shift dữ liệu để mô hình học cách dự đoán cho thời điểm tiếp theo
-        data["future_label"] = data["label"].shift(-1)
         data = data.dropna()
 
         # Phân chia tập Train/Test
         X = data[["indoor_temp", "outdoor_temp", "delta_temp", "heat_index"]]
-        y = data["future_label"]
+        y = data["label"]
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
         # Huấn luyện mô hình Decision Tree
-        model = DecisionTreeClassifier()
+        model = DecisionTreeClassifier(class_weight="balanced")
         model.fit(X_train, y_train)
-        print("Model accuracy:", model.score(X_test, y_test))
+        print("Model accuracy:", model.score(X_test, y_test), flush=True)
         
         # Export mô hình ra file để tái sử dụng ở luồng Monitor
         joblib.dump(model, "heat_model.pkl")
     else:
-        print("Not enough data to train AI yet.")
+        print("Not enough data to train AI yet.", flush=True)
 except Exception as e:
-    print(f"Training skipped: {e}")
+    print(f"Training skipped: {e}", flush=True)
 
 
 # ==========================================
 # KHỐI GIÁM SÁT VÀ DỰ ĐOÁN THỜI GIAN THỰC
 # ==========================================
-print("Start AI monitoring...")
+print("Start AI monitoring...", flush=True)
 if os.path.exists("heat_model.pkl"):
     model = joblib.load("heat_model.pkl")
     cursor = db.cursor()
     
+    # BIẾN NHỚ TRẠNG THÁI: Khởi tạo mặc định là an toàn (False)
+    last_risk_state = False
+
     while True:
         try:
+            # Ép MySQL trả về dữ liệu mới nhất
+            db.commit()
+            
             # Truy vấn 20 bản ghi mới nhất để lấy trạng thái môi trường hiện tại
             cursor.execute("SELECT device_id, temperature, humidity FROM sensor_data ORDER BY created_at DESC LIMIT 20")
             rows = cursor.fetchall()
@@ -107,14 +131,34 @@ if os.path.exists("heat_model.pkl"):
                 delta = abs(outdoor - indoor)
                 hi = heat_index(outdoor, outdoor_h)
                 
-                # Nạp thông số vào AI để xuất kết quả dự đoán
-                pred = model.predict([[indoor, outdoor, delta, hi]])
-                print(f"Indoor: {indoor} | Outdoor: {outdoor} | Risk: {'YES' if pred[0]==1 else 'NO'}")
+                # Nạp thông số vào AI (Đã đóng gói vào DataFrame để xóa Warning rác)
+                input_df = pd.DataFrame([[indoor, outdoor, delta, hi]], columns=["indoor_temp", "outdoor_temp", "delta_temp", "heat_index"])
+                pred = model.predict(input_df)
+                
+                # Biến lưu trạng thái dự đoán hiện tại (True = Nguy hiểm)
+                current_risk = (pred[0] == 1)
+                
+                # ----------------------------------------------------
+                # LÕI CẢNH BÁO: CHỈ KÍCH HOẠT KHI TRẠNG THÁI THAY ĐỔI
+                # ----------------------------------------------------
+                if current_risk != last_risk_state:
+                    if current_risk == True:
+                        msg = f"🔴CẢNH BÁO SỐC NHIỆT\n- Trong nhà: {indoor}°C\n- Ngoài trời: {outdoor}°C\n- Chênh lệch: {round(delta,1)}°C\n- Heat Index: {round(hi,1)}"
+                        print(msg, flush=True)
+                        send_telegram_alert(msg)
+                    else:
+                        msg = f"🟢ĐÃ AN TOÀN\nNhiệt độ môi trường đã ổn định lại.\n- Trong nhà: {indoor}°C\n- Ngoài trời: {outdoor}°C"
+                        print(msg, flush=True)
+                        send_telegram_alert(msg)
+                    
+                    # Cập nhật bộ nhớ để vòng lặp sau không gửi lại
+                    last_risk_state = current_risk
+
         except Exception as e:
-            pass
+            print(f"Lỗi vòng lặp giám sát: {e}", flush=True)
         
         # Chu kỳ quét dữ liệu mới: 5s/lần
         time.sleep(5)
 else:
-    print("AI Model not found. Standing by...")
+    print("AI Model not found. Standing by...", flush=True)
     while True: time.sleep(100)
