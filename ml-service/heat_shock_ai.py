@@ -10,8 +10,8 @@ from sklearn.model_selection import train_test_split
 # ==========================================
 # CẤU HÌNH TELEGRAM BOT
 # ==========================================
-TELEGRAM_TOKEN = "8623568797:AAEIerQ-p_84Of1_L_8A8_6ydXWNA4-11JA"
-TELEGRAM_CHAT_ID = "7049984207"
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 def send_telegram_alert(message):
     # Nếu chưa điền Token thì bỏ qua không gửi để tránh báo lỗi

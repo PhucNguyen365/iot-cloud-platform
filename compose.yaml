@@ -41,6 +41,8 @@ services:
     environment:               
       TZ: Asia/Ho_Chi_Minh
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID}
     depends_on:
       - mysql
 
@@ -69,8 +71,13 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: edge-tunnel
     restart: unless-stopped
-    command: tunnel run
+    command: tunnel run --protocol http2
     env_file:
       - .env
     depends_on:
       - nginx
+
+networks:
+  default:
+    name: iot-custom-bridge
+    driver: bridge
