@@ -40,11 +40,11 @@
         "type": "ui-theme",
         "name": "Default Theme",
         "colors": {
-            "surface": "#ffffff",
-            "primary": "#0094CE",
-            "bgPage": "#eeeeee",
-            "groupBg": "#ffffff",
-            "groupOutline": "#cccccc"
+            "surface": "#000000",
+            "primary": "#00ff91",
+            "bgPage": "#0a0000",
+            "groupBg": "#050000",
+            "groupOutline": "#327170"
         },
         "sizes": {
             "density": "default",
@@ -85,7 +85,7 @@
                 "cols": "12"
             }
         ],
-        "order": 2,
+        "order": 1,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -183,10 +183,10 @@
     {
         "id": "0a1eb5ca8cb92598",
         "type": "ui-page",
-        "name": "Lịch Sử",
+        "name": "Lịch Sử Giám Sát 7 Ngày",
         "ui": "240b11703038dcb8",
         "path": "/page2",
-        "icon": "",
+        "icon": "mdi-history",
         "layout": "grid",
         "theme": "06e92153a3f4061f",
         "breakpoints": [
@@ -211,7 +211,7 @@
                 "cols": "12"
             }
         ],
-        "order": 1,
+        "order": 2,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -280,7 +280,7 @@
         "title": "Nhiệt độ",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "units",
+        "units": "°C",
         "icon": "",
         "prefix": "",
         "suffix": "",
@@ -334,7 +334,7 @@
         "title": "Độ ẩm",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "units",
+        "units": "%",
         "icon": "",
         "prefix": "",
         "suffix": "",
@@ -388,7 +388,7 @@
         "title": "Nhiệt độ",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "units",
+        "units": "°C",
         "icon": "",
         "prefix": "",
         "suffix": "",
@@ -442,7 +442,7 @@
         "title": "Độ ẩm",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "units",
+        "units": "%",
         "icon": "",
         "prefix": "",
         "suffix": "",
