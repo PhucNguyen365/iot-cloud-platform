@@ -3,14 +3,10 @@ services:
     image: eclipse-mosquitto
     container_name: core-mqtt
     restart: unless-stopped
-    ports:
-      - "8883:8883"
     volumes:
       - ./volumes/mosquitto/config/${MQTT_CONFIG_FILE:-mosquitto.conf}:/mosquitto/config/mosquitto.conf
-      - ./volumes/mosquitto/config/password_file:/mosquitto/config/password_file
       - ./volumes/mosquitto/data:/mosquitto/data
       - ./volumes/mosquitto/log:/mosquitto/log
-      - /etc/letsencrypt:/etc/letsencrypt:ro 
 
   mysql:
     image: mysql:8.0
@@ -63,7 +59,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/.htpasswd:/etc/nginx/.htpasswd:ro
     depends_on:
       - nodered
 
